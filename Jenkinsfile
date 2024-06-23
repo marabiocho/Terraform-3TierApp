@@ -1,7 +1,11 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'kantin10/terraform-aws-cli:latest'
+            args '-u root:root' // Run as root user to avoid permission issues
+        }
+    }
 
-   
     stages {
         stage('Checkout') {
             steps {
@@ -11,25 +15,13 @@ pipeline {
 
         stage('Terraform Init') {
             steps {
-                dir('Terraform-3TierApp') {
-                    sh "${TERRAFORM_HOME}/bin/terraform init"
-                }
-            }
-        }
-
-        stage('Terraform Plan') {
-            steps {
-                dir('Terraform-3TierApp') {
-                    sh "${TERRAFORM_HOME}/bin/terraform plan"
-                }
+                sh 'terraform init'
             }
         }
 
         stage('Terraform Apply') {
             steps {
-                dir('Terraform-3TierApp') {
-                    sh "${TERRAFORM_HOME}/bin/terraform apply -auto-approve"
-                }
+                sh 'terraform apply -auto-approve'
             }
         }
     }

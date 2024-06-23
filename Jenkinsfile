@@ -1,27 +1,34 @@
 pipeline {
-    agent {
-        docker {
-            image 'kantin10/terraform-aws-cli:latest'
-            args '-u root:root' // Run as root user to avoid permission issues
-        }
-    }
-
+    agent any
     stages {
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/marabiocho/Terraform-3TierApp.git', branch: 'main'
+        stage('Build') {
+            agent {
+                docker {
+                    image 'kantin10/terraform-aws-cli'
+                    // Run the container on the node specified at the
+                    // top-level of the Pipeline, in the same workspace,
+                    // rather than on a new node entirely:
+                    reuseNode true
+                }
             }
-        }
-
-        stage('Terraform Init') {
             steps {
-                sh 'terraform init'
-            }
-        }
+                stage('Checkout') {
+                    steps {
+                        git url: 'https://github.com/marabiocho/Terraform-3TierApp.git', branch: 'main'
+                    }
+                }
 
-        stage('Terraform Apply') {
-            steps {
-                sh 'terraform apply -auto-approve'
+                stage('Terraform Init') {
+                    steps {
+                        sh 'terraform init'
+                    }
+                }
+
+                stage('Terraform Apply') {
+                    steps {
+                        sh 'terraform apply -auto-approve'
+                    }
+                }
             }
         }
     }

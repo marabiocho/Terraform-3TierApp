@@ -31,7 +31,7 @@ pipeline {
 
         stage('Terraform Validate') {
             steps {
-                sh 'terraform validate -var-file=secret.tfvars'
+                sh 'terraform validate'
             }
         }
 

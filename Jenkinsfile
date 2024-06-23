@@ -19,7 +19,7 @@ pipeline {
 
         stage('Terraform Refresh') {
             steps {
-                sh 'terraform refresh'
+                sh 'terraform refresh -var-file=secret.tfvars'
             }
         }
 
@@ -31,13 +31,13 @@ pipeline {
 
         stage('Terraform Validate') {
             steps {
-                sh 'terraform validate'
+                sh 'terraform validate -var-file=secret.tfvars'
             }
         }
 
         stage('Terraform Graph') {
             steps {
-                sh 'terraform graph'
+                sh 'terraform graph -var-file=secret.tfvars'
             }
         }
 

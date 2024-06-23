@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/marabiocho/Terraform-3TierApp.git', branch: 'main'
+                git url: 'https://github.com/marabiocho/Vprofile-terrafom-code.git', branch: 'main'
             }
         }
 
@@ -17,6 +17,11 @@ pipeline {
             }
         }
 
+        stage('Terraform plan') {
+            steps {
+                sh 'terraform apply -auto-approve'
+            }
+        }
         stage('Terraform Apply') {
             steps {
                 sh 'terraform apply -auto-approve'

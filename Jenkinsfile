@@ -1,7 +1,9 @@
 pipeline {
     agent any
 
-    
+    environment {
+        GIT_HOME = tool name: 'Default', type: 'GitTool'
+    }
 
     stages {
         stage('Checkout') {

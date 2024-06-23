@@ -1,8 +1,9 @@
 pipeline {
     agent any
 
-    environment {
-        GIT_HOME = tool name: 'Default', type: 'GitTool'
+    tools {
+        // Make sure the name matches the Git installation configured in Jenkins
+        git 'Default'
     }
 
     stages {

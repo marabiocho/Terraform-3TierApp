@@ -37,7 +37,7 @@ pipeline {
 
         stage('Terraform Graph') {
             steps {
-                sh 'terraform graph -var-file=secret.tfvars'
+                sh 'terraform graph'
             }
         }
 

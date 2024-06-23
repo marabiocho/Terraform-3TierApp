@@ -46,9 +46,15 @@ pipeline {
                 sh 'terraform plan -var-file=secret.tfvars'
             }
         }
-        stage('Terraform Apply') {
+        #stage('Terraform Apply') {
+        #    steps {
+        #        sh 'terraform apply -var-file=secret.tfvars --auto-approve'
+        #    }
+        #}
+
+        stage('Terraform Destroy') {
             steps {
-                sh 'terraform apply -var-file=secret.tfvars --auto-approve'
+                sh 'terraform destroy -var-file=secret.tfvars --auto-approve'
             }
         }
     }

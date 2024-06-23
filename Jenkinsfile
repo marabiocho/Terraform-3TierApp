@@ -43,12 +43,12 @@ pipeline {
 
         stage('Terraform plan') {
             steps {
-                sh 'terraform plan'
+                sh 'terraform plan -var-file=secret.tfvars'
             }
         }
         stage('Terraform Apply') {
             steps {
-                sh 'terraform apply -auto-approve'
+                sh 'terraform apply -var-file=secret.tfvars --auto-approve'
             }
         }
     }

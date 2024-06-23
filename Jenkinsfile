@@ -1,9 +1,7 @@
 pipeline {
     agent any
 
-    environment {
-        TERRAFORM_HOME = tool name: 'terraform', type: 'TerraformInstallation'
-    }
+    
 
     stages {
         stage('Checkout') {

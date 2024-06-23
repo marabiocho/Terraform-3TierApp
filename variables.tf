@@ -150,6 +150,17 @@ variable "tg-app-name" {
   description = "Name for Target group app"
 }
 
+variable "db-username" {
+  description = "Username for db instance"
+}
+
+variable "db-password" {
+  description = "Password for db instance"
+}
+
+variable "db-name" {
+  description = "Name for Database"
+}
 
 variable "instance-class" {
   description = "Value for DB instance class"

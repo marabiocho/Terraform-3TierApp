@@ -1,11 +1,7 @@
 pipeline {
     agent any
 
-    tools {
-        // Make sure the name matches the Git installation configured in Jenkins
-        git 'Default'
-    }
-
+   
     stages {
         stage('Checkout') {
             steps {

@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        TERRAFORM_HOME = tool name: 'Terraform', type: 'TerraformInstallation'
+        TERRAFORM_HOME = tool name: 'terraform', type: 'TerraformInstallation'
     }
 
     stages {
